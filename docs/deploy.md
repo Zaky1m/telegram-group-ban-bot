@@ -11,8 +11,10 @@ runs the modules and keeps the database.
 You need:
 
 - Node.js 22 or newer on the computer you deploy from
-- A bot on Telegram's serverless platform. The platform's guide explains how to
-  create one, and `tgcloud login` asks for the token that links this project to it
+- A bot registered with [@BotFather](https://t.me/BotFather), with **Serverless**
+  switched on: open your bot, then **Serverless**
+- The bot's CLI access token: in @BotFather, your bot, **Serverless**, **CLI Access**,
+  **Access token**. It looks like `app<id>:<secret>` and is not the bot's API token
 
 ## Deploy
 
@@ -27,6 +29,17 @@ npx tgcloud migrate      # creates the tables on the first deploy
 
 `tgcloud login` keeps the token in `.tgcloud/`, which git ignores. To run the
 commands from a script, set `TGCLOUD_TOKEN` instead (see `.env.example`).
+
+## From a phone
+
+Telegram's guide says the whole project is also available in @BotFather, under your
+bot's **Serverless** section: you can create and edit handlers and the shared
+library, test-run them, and edit and apply the database schema. Saving there deploys.
+
+This project has about twenty modules, so typing them in by hand is slow. A
+practical route from a phone is any environment with a terminal and Node.js 22, such
+as a GitHub Codespace opened in the browser, where the steps above work unchanged.
+The token still comes from @BotFather.
 
 ## Claim the bot
 
