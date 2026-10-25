@@ -40,9 +40,9 @@ test('send converts static text and button labels to small caps without a direct
   const { reset, called } = await import('./fake/sdk.mjs');
   const { send, btn } = await import('lib/ui');
   reset();
-  await send(1, T.denied, [[btn(T.BTN.back, 'v:h:1')]]);
+  await send(1, T.adminsOnly, [[btn(T.BTN.back, 'v:h:1')]]);
   const sent = called('sendMessage')[0];
-  assert.ok(sent.text.includes('ɴᴏᴛ ᴀʟʟᴏᴡᴇᴅ'));
+  assert.ok(sent.text.includes('ᴏɴʟʏ ꜰᴏʀ ᴀᴅᴍɪɴѕ'));
   assert.ok(!sent.text.includes('‏'));
   assert.equal(sent.reply_markup.inline_keyboard[0][0].text, 'ʙᴀᴄᴋ');
 });

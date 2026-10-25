@@ -96,3 +96,13 @@ Decision: `tests/loader.mjs` maps the bare module names to the project files and
 to `tests/fake/`, which holds an in-memory database and a recorder of Bot API
 calls.
 Why: the real modules run in tests unchanged, with no account, network or bot.
+
+## 12. Strangers are pointed to the source
+
+Context: anyone can open the bot, and only admins can use it.
+Decision: in a private chat the bot answers any non-admin with a note and a blue
+button to the repository, and keeps the profile description in sync with a link
+to it. It stays silent in groups.
+Why: a closed tool then tells visitors how to run their own copy. Answering in
+groups would make the bot reply to anyone who types a command there.
+Trade-off: every private message from a stranger gets an answer, with no limit.

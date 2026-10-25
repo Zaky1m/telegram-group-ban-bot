@@ -5,6 +5,10 @@ All notable changes are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- Strangers who message the bot privately get a note that it is for admins only and a button to the source repository.
+- The bot keeps its profile description in sync, with a link to the repository.
+
 ### Fixed
 - The phrase blacklist no longer applies to admins: the bot's owner and extra admins, the chat's admins and creator, anonymous admins, posts mirrored from the linked channel, and channel posts.
 

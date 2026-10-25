@@ -64,10 +64,11 @@ test('an extra admin cannot add or remove admins', async () => {
   assert.deepEqual(await store.getAdminIds(), [owner.id, helper.id]);
 });
 
-test('a stranger gets no reply to admin commands', async () => {
+test('a stranger cannot add themselves and is only pointed to the source', async () => {
   await handleMessage(say(stranger, `/addadmin ${stranger.id}`));
   assert.deepEqual(await store.getAdminIds(), [owner.id]);
-  assert.equal(called('sendMessage').length, 0);
+  assert.equal(called('sendMessage').length, 1);
+  assert.match(lastText(), /ᴏɴʟʏ ꜰᴏʀ ᴀᴅᴍɪɴѕ/);
 });
 
 test('rejects missing, non numeric and negative ids', async () => {

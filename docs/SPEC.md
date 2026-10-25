@@ -10,8 +10,11 @@ How the bot behaves. Change it only after discussing it in an issue. Numbers in
 - **Extra admins**: added by the owner with `/addadmin <id>` and removed with
   `/rmadmin <id>`. They have the owner's powers except managing admins and
   reading `/errors`. Stored as a JSON list in `settings.extra_admins`.
-- **Everyone else**: gets no answer to commands and cannot press any button.
-  The one exception is `/start`, which answers "not allowed" once an owner exists.
+- **Everyone else**: cannot run any command or press any button. In a private
+  chat the bot answers anything they send with a short note that it is for admins
+  only, and a blue button with an emoji that opens the source repository. In a
+  group, a channel, for an edited message, for a bot, and before an owner exists,
+  it stays silent.
 
 Commands are registered with Telegram on the admins' own chats only. Every other
 scope is cleared, so nobody else sees a command list.
@@ -92,14 +95,22 @@ scope is cleared, so nobody else sees a command list.
   `/ban` was ignored. One row per problem, chat and detail; a repeat raises its
   counter. `/errors clear` empties it.
 
-## 8. Messages
+## 8. Profile
+
+The bot's short description (the "About" text on its profile) is
+`Bans an account from every group you moderate. Open source: <repository URL>`,
+in small capitals with the link untouched. It is written with
+`setMyShortDescription` on the first update after it changes, and retried on the
+next update if Telegram refuses. A failure goes to `/errors`.
+
+## 9. Messages
 
 - All text is English, shown in small capitals. Names, IDs, `/commands`,
   `@usernames`, links and HTML are not converted.
 - Buttons are coloured and use premium emoji. If Telegram rejects them the same
   message is sent again without colour or emoji.
 
-## 9. State
+## 10. State
 
 | Kind | Examples | Lifetime |
 |---|---|---|

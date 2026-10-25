@@ -7,7 +7,8 @@
 The first account that sends `/start` to the bot in a private chat becomes the
 owner. The owner can add extra admins with `/addadmin <account id>` and remove
 them with `/rmadmin <account id>`. An extra admin can do everything the owner
-can except manage admins and read `/errors`. Nobody else gets an answer, and the
+can except manage admins and read `/errors`. Anyone else who writes to the bot
+privately is told that it is for admins and gets a button to this repository. The
 buttons do nothing for them.
 
 ## Putting a chat under watch

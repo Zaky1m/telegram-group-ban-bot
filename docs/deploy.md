@@ -32,9 +32,17 @@ commands from a script, set `TGCLOUD_TOKEN` instead (see `.env.example`).
 
 ## From a phone
 
-Telegram's guide says the whole project is also available in @BotFather, under your
-bot's **Serverless** section: you can create and edit handlers and the shared
-library, test-run them, and edit and apply the database schema. Saving there deploys.
+Telegram's guide says the whole project is also available in @BotFather. Open your
+bot, then **Serverless**, and switch it on. The screen lists **CLI Access**,
+**Handlers**, **Endpoints**, **Library**, **Database** and **Mini App Files**. This
+bot uses three of them:
+
+- **Handlers**: the files in `handlers/`, one per Telegram update type
+- **Library**: the files in `lib/`, the shared modules the handlers import
+- **Database**: `schema.js`
+
+There you can create and edit them, test-run a handler, and edit and apply the
+database schema. Saving deploys.
 
 This project has about twenty modules, so typing them in by hand is slow. A
 practical route from a phone is any environment with a terminal and Node.js 22, such
