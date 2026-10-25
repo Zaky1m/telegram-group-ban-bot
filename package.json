@@ -1,0 +1,36 @@
+{
+  "name": "telegram-group-ban-bot",
+  "version": "0.1.0",
+  "description": "A Telegram bot that bans an account from every group and channel you moderate, with warnings, a phrase blacklist and cleanup of service messages. Runs on Telegram's serverless platform.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "Zaky1m",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zaky1m/telegram-group-ban-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Zaky1m/telegram-group-ban-bot/issues"
+  },
+  "homepage": "https://github.com/Zaky1m/telegram-group-ban-bot#readme",
+  "keywords": [
+    "telegram",
+    "telegram-bot",
+    "moderation",
+    "anti-spam",
+    "tgcloud"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --import ./tests/register.mjs --test \"tests/**/*.test.js\"",
+    "deploy": "tgcloud push",
+    "status": "tgcloud status",
+    "run": "tgcloud run"
+  },
+  "devDependencies": {
+    "@tgcloud/cli": "^0.1.2"
+  }
+}
