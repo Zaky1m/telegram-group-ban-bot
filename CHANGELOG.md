@@ -5,6 +5,9 @@ All notable changes are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- The phrase blacklist no longer applies to admins: the bot's owner and extra admins, the chat's admins and creator, anonymous admins, posts mirrored from the linked channel, and channel posts.
+
 ## [0.1.0]
 
 ### Added

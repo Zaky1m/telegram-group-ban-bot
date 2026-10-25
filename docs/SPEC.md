@@ -64,9 +64,12 @@ scope is cleared, so nobody else sees a command list.
 - Matching ignores diacritics, tatweel, spacing, punctuation and case, and folds
   the Arabic alef, teh marbuta, yeh and hamza variants.
 - A matching message in a watched chat is deleted and every admin is asked
-  whether to ban the sender. Nobody is exempt, so a bot admin who posts a
-  blacklisted phrase is treated like anyone else. A message with no sender, such
-  as a channel post, is deleted without a question.
+  whether to ban the sender.
+- Admins are exempt: the bot's owner and extra admins, the chat's own admins and
+  creator, an anonymous admin posting as the group, a post mirrored from the
+  linked channel, and any post in a channel. The chat's admin list is checked
+  with `getChatMember` only when a phrase matches. If that lookup fails the
+  sender is treated as a normal member.
 - The same person repeating the same phrase 3 times *(HITS_LIMIT)*, counted across
   all watched chats, is banned without a question.
 

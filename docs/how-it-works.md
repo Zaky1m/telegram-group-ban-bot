@@ -57,6 +57,10 @@ spacing, punctuation or Arabic diacritics. The admins are asked whether to ban
 the sender, and the third repeat of the same phrase bans the person without a
 question.
 
+The blacklist never applies to admins: the owner and extra admins of the bot, the
+admins and creator of the chat, and posts made on behalf of the group or its
+linked channel.
+
 ## Cleaning up
 
 In every group or channel where the bot is allowed to delete messages, it deletes
