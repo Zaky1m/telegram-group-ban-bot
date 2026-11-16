@@ -54,7 +54,8 @@ warned people.
 ## Blacklist
 
 `/w <phrase>` adds a phrase, `/words` shows the list and `/rmword <phrase>`
-removes one. A message containing a phrase is deleted whatever the letter case,
+removes one. Separate several phrases with commas to add them in one go, or send `/w`
+alone in a private chat and the bot asks for them. A message containing a phrase is deleted whatever the letter case,
 spacing, punctuation or Arabic diacritics. The admins are asked whether to ban
 the sender, and the third repeat of the same phrase bans the person without a
 question.

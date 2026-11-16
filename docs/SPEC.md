@@ -65,6 +65,10 @@ scope is cleared, so nobody else sees a command list.
 ## 5. Blacklist
 
 - `/w <phrase>` adds, `/rmword <phrase>` removes, `/words` lists.
+- `/w` takes several phrases at once, separated by commas (`,` or `،`) or line
+  breaks. A bare `/w` in a private chat asks for the phrases and takes the next
+  text from that admin. The wait lasts one hour, survives restarts, and any other
+  command cancels it. In a group a bare `/w` only shows the usage.
 - Matching ignores diacritics, tatweel, spacing, punctuation and case, and folds
   the Arabic alef, teh marbuta, yeh and hamza variants.
 - A matching message in a watched chat is deleted and every admin is asked

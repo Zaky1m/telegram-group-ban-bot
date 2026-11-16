@@ -290,6 +290,41 @@ test('/w, /words and /rmword manage the blacklist', async () => {
   assert.deepEqual(await store.listWords(), []);
 });
 
+const plain = (from, chat, text) => ({ message_id: 401, chat, from, text });
+
+test('/w adds several phrases split by Latin and Arabic commas', async () => {
+  const dm = { id: owner.id, type: 'private' };
+  await store.addWord('old one');
+  await handleMessage(command(owner, dm, '/w spam link, free coins، old one, spam link'));
+  assert.deepEqual(await store.listWords(), ['free coins', 'old one', 'spam link']);
+  assert.match(texts(), /ᴀʟʀᴇᴀᴅʏ ᴏɴ ᴛʜᴇ ʙʟᴀᴄᴋʟɪѕᴛ/);
+});
+
+test('a bare /w asks for the phrases and takes the next message', async () => {
+  const dm = { id: owner.id, type: 'private' };
+  await handleMessage(command(owner, dm, '/w'));
+  assert.match(texts(), /ѕᴇɴᴅ ᴛʜᴇ ᴘʜʀᴀѕᴇ/);
+  await handleMessage(plain(owner, dm, 'buy now, cheap followers'));
+  assert.deepEqual(await store.listWords(), ['buy now', 'cheap followers']);
+  await handleMessage(plain(owner, dm, 'later text'));
+  assert.deepEqual(await store.listWords(), ['buy now', 'cheap followers']);
+});
+
+test('another command cancels the wait for phrases', async () => {
+  const dm = { id: owner.id, type: 'private' };
+  await handleMessage(command(owner, dm, '/w'));
+  await handleMessage(command(owner, dm, '/words'));
+  await handleMessage(plain(owner, dm, '123456789'));
+  assert.deepEqual(await store.listWords(), []);
+  assert.match(texts(), /ʙᴀɴ/);
+});
+
+test('a bare /w in a group only shows the usage', async () => {
+  await handleMessage(command(owner, groupA, '/w'));
+  assert.match(texts(), /ᴜѕᴀɢᴇ/);
+  assert.equal(await store.takeWordsWait(owner.id), undefined);
+});
+
 test('/list shows the panel and its pages switch with the buttons', async () => {
   const dm = { id: owner.id, type: 'private' };
   await store.addBannedUser(spammer.id, 'Spammer', 'spam_guy');

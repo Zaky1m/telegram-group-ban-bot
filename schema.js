@@ -26,7 +26,7 @@ export const settings = table('settings', {
 // Every request waiting for a button press. The button carries only the code, the rest lives here
 export const pending = table('pending', {
   code:        text('code').primaryKey(),
-  kind:        text('kind').notNull(),      // ban | wban | hit | unban | chat
+  kind:        text('kind').notNull(),      // ban | wban | hit | unban | chat | warn3 | words
   userId:      integer('user_id'),          // the target
   chatId:      integer('chat_id'),          // the group the request came from
   askChatId:   integer('ask_chat_id'),      // the chat holding the question message
