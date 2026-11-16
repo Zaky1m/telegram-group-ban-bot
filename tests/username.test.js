@@ -41,4 +41,6 @@ test('the add-to-chat buttons use this bot\'s own username', async () => {
   assert.deepEqual(urls.map((u) => u.split('?')[0]), ['https://t.me/MyOwnBot', 'https://t.me/MyOwnBot']);
   assert.ok(urls[0].includes('startgroup=add'));
   assert.ok(urls[1].includes('startchannel=add'));
+  assert.ok(urls[0].includes('pin_messages'));
+  assert.ok(!urls[1].includes('pin_messages'));
 });

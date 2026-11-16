@@ -22,7 +22,8 @@ scope is cleared, so nobody else sees a command list.
 ## 2. Watched chats
 
 - Adding the bot to a group, supergroup or channel as an admin with the rights
-  to **ban members** and **delete messages** makes it ask every admin whether to
+  to **ban members** and **delete messages**, plus **pin messages** in a group or
+  supergroup, makes it ask every admin whether to
   start watching the chat. Confirming registers the chat and applies the whole
   ban list to it.
 - With fewer rights the bot leaves the chat and tells the admins, with buttons
@@ -84,8 +85,9 @@ scope is cleared, so nobody else sees a command list.
   it is content. Service messages in a private chat are left alone.
 - A pin notice for a post that Telegram mirrored from a linked channel
   (`is_automatic_forward`) also unpins that post. A pin made by a person stays.
-  Unpinning needs the **pin messages** right, which is not required of the bot;
-  a failure goes to `/errors`.
+  Unpinning needs the **pin messages** right, which every group must grant; a
+  group registered before that rule may still lack it, and a failure goes to
+  `/errors`.
 
 ## 7. Panel and problems
 

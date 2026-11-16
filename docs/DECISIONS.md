@@ -52,9 +52,11 @@ delete costs one API call.
 Context: Telegram pins a linked channel's post in its discussion group.
 Decision: unpin when the pin notice's message has `is_automatic_forward`, and
 leave other pins alone.
-Why: people pin things on purpose. The pin right is not required of the bot,
-because the bot leaves chats where a required right is missing and that would
-remove it from working groups. The failure is recorded instead.
+Why: people pin things on purpose. Since 2026-11-17 the pin right is required
+in groups, because a linked channel pins every post and the owner wants each one
+undone. Channels have no pin right to grant, so they do not need it. Groups
+registered earlier keep working without it until their rights change, and a
+failed unpin is recorded in `/errors`.
 Trade-off: an admin who pins a mirrored post by hand has it unpinned too, since
 the notice does not say who pinned it.
 

@@ -61,8 +61,9 @@ Add the bot to a group or channel as an admin with these rights:
 
 - **Ban users** and **Delete messages**, which are required. Without them the
   bot leaves the chat
-- **Pin messages**, which is optional and lets the bot unpin channel posts that
-  Telegram pins in a discussion group
+- **Pin messages**, which is required in groups so the bot can unpin the channel
+  posts that Telegram pins in a discussion group. The add-to-group button asks
+  for it
 
 The bot sends the owner a message asking whether to watch the chat. Confirm it.
 

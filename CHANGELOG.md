@@ -5,6 +5,9 @@ All notable changes are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+- Groups now require the pin messages right, and the add-to-group button asks for it, so the bot can unpin every post a linked channel pins. Channels do not need it.
+
 ### Added
 - Strangers who message the bot privately get a note that it is for admins only and a button to the source repository.
 - The bot keeps its profile description in sync, with a link to the repository.

@@ -189,7 +189,7 @@ test('a normal member joining is left alone', async () => {
   assert.equal(called('banChatMember').length, 0);
 });
 
-const adminRights = { status: 'administrator', can_restrict_members: true, can_delete_messages: true };
+const adminRights = { status: 'administrator', can_restrict_members: true, can_delete_messages: true, can_pin_messages: true };
 const groupC = { id: -1003, type: 'supergroup', title: 'Group C' };
 
 test('being made admin with the right rights asks the owner to start watching', async () => {
@@ -211,6 +211,19 @@ test('without the needed rights the bot leaves and tells the owner', async () =>
   await handleMyChatMember({ chat: groupC, new_chat_member: { status: 'administrator', can_restrict_members: true } });
   assert.deepEqual(called('leaveChat'), [{ chat_id: groupC.id }]);
   assert.match(texts(), /ɪ ʟᴇꜰᴛ ᴛʜᴇ ᴄʜᴀᴛ/);
+});
+
+test('a group admin without the pin right is not enough', async () => {
+  const { can_pin_messages, ...noPin } = adminRights;
+  await handleMyChatMember({ chat: groupC, new_chat_member: noPin });
+  assert.deepEqual(called('leaveChat'), [{ chat_id: groupC.id }]);
+  assert.equal(await store.hasChat(groupC.id), false);
+});
+
+test('a channel does not need the pin right', async () => {
+  const { can_pin_messages, ...noPin } = adminRights;
+  await handleMyChatMember({ chat: { id: -1004, type: 'channel', title: 'Channel D' }, new_chat_member: noPin });
+  assert.equal(called('leaveChat').length, 0);
 });
 
 test('being removed from a watched chat stops watching it and tells the owner', async () => {

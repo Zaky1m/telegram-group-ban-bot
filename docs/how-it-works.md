@@ -14,10 +14,11 @@ buttons do nothing for them.
 ## Putting a chat under watch
 
 Add the bot to a group or channel and make it an admin with the rights to ban
-members and delete messages. It asks every admin whether to start watching that
+members and delete messages. A group also needs the right to pin messages, so
+the bot can unpin the posts a linked channel pins. It asks every admin whether to start watching that
 chat. After you confirm, the whole ban list is applied to the chat.
 
-If the bot is made an admin without those two rights, it leaves and tells the
+If the bot is made an admin without those rights, it leaves and tells the
 admins, with buttons that add it again with the rights preset. `/addchat <chat id>`
 and `/rmchat <chat id>` register or drop a chat by its ID.
 
